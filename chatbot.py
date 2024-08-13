@@ -1,7 +1,7 @@
 import streamlit as st
 import ollama
 
-st.title("💬 llama 3.1  Chatbot")
+st.title("💬 llama3.1:8b   Chatbot")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
@@ -15,7 +15,7 @@ for msg in st.session_state.messages:
 
 ## Generator for Streaming Tokens
 def generate_response():
-    response = ollama.chat(model='llama3.1', stream=True, messages=st.session_state.messages)
+    response = ollama.chat(model='llama3.1:8b', stream=True, messages=st.session_state.messages)
     for partial_resp in response:
         token = partial_resp["message"]["content"]
         st.session_state["full_message"] += token
